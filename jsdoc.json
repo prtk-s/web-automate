@@ -1,0 +1,24 @@
+{
+    "source":{
+        "include":["./lib"],
+        "includePattern": ".js$",
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "plugins":[
+        "plugins/markdown"
+    ],
+    "opts":{
+        "encoding":"utf-8",
+        "readme":"",
+        "destination":"./docs",
+        "recurse":true,
+        "verose":true
+    },
+    "templates": {
+        "default": {
+            "outputSourceFiles": false
+        },
+        "cleverLinks": false,
+        "monospaceLinks": false
+    }
+}
