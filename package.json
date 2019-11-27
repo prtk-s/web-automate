@@ -1,26 +1,26 @@
-  {
-    "name": "web-automate",
-    "version": "1.0.1",
-    "description": "Automation library for selenium",
-    "main": "index.js",
-    "scripts": {
-      "build": "./node_modules/.bin/babel lib/ -d builds",
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "docs": "./node_modules/.bin/jsdoc -c jsdoc.json"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/prtk-s/web-automate.git"
-    },
-    "author": "parteek",
-    "license": "ISC",
-    "dependencies": {
-      "jsdoc": "^3.6.3",
-      "lodash": "^4.17.15",
-      "selenium-webdriver": "^4.0.0-alpha.4"
-    },
-    "devDependencies": {
-      "babel-cli": "^6.26.0",
-      "babel-preset-env": "^1.7.0"
-    }
+{
+  "name": "web-automate",
+  "version": "1.0.1",
+  "description": "Automation library for selenium",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/babel lib/ -d builds",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "./node_modules/.bin/jsdoc -c jsdoc.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prtk-s/web-automate.git"
+  },
+  "author": "parteek",
+  "license": "ISC",
+  "dependencies": {
+    "jsdoc": "^3.6.3",
+    "lodash": "^4.17.15",
+    "selenium-webdriver": "^4.0.0-alpha.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
   }
+}
