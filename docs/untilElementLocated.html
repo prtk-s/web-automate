@@ -39,8 +39,108 @@
     
         
 
-        
+      <h4 class="name" id="untilElementLocated">
+        <span class="type-signature"></span>untilElementLocated<span
+          class="signature"
+          >(driver, path, time<span class="signature-attributes">opt</span
+          >)</span
+        ><span class="type-signature"> &rarr; {Object|Error}</span>
+      </h4>
 
+      <div class="description">
+        <p>untilElementLocated</p>
+      </div>
+
+      <h5>Parameters:</h5>
+
+      <table class="params">
+        <thead>
+          <tr>
+            <th>Name</th>
+
+            <th>Type</th>
+
+            <th>Attributes</th>
+
+            <th class="last">Description</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td class="name"><code>driver</code></td>
+
+            <td class="type">
+              <span class="param-type">Object</span>
+            </td>
+
+            <td class="attributes"></td>
+
+            <td class="description last">
+              <p>webdriver object of web browser.</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="name"><code>path</code></td>
+
+            <td class="type">
+              <span class="param-type">Object</span>
+            </td>
+
+            <td class="attributes"></td>
+
+            <td class="description last">
+              <p>
+                object of path type as xpath, id, className, tagName, name
+                properties.
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="name"><code>time</code></td>
+
+            <td class="type">
+              <span class="param-type">Number</span>
+            </td>
+
+            <td class="attributes">&lt;optional><br /></td>
+
+            <td class="description last">
+              <p>
+                time is optional.This parameter represent for how much time
+                user want to wait for &quot;webElement&quot;. After time
+                finish it returns error.
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <dl class="details"></dl>
+
+      <h5>Returns:</h5>
+
+      <div class="param-desc">
+        <p>
+          return a object of &quot;webElement&quot;. If we pass time param
+          &amp; it will not get &quot;webElement&quot;, it will return
+          error.
+        </p>
+      </div>
+
+      <dl>
+        <dt>
+          Type
+        </dt>
+        <dd>
+          <span class="param-type">Object</span>
+          |
+
+          <span class="param-type">Error</span>
+        </dd>
+      </dl>
 
 <dl class="details">
 
