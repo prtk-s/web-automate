@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>web-automate: How to create XPath?</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="icon" href="logo.png" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="styles/prettify-tomorrow.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
+  </head>
+
+  <body>
+    <div id="main">
+      <section>
+        <header><h2>Create XPath</h2></header>
+          <h4><div>
+            In Selenium web automation, if the elements are not found by the general 
+            locators like name, id, tagname, class, etc. then we use XPath to find an element on the web page.
+            In this tutorial, we will learn about how to create different XPath expression to find the 
+            complex or dynamic elements, whose attributes changes dynamically on refresh or any operations.
+          </div>
+          </h4>
+          <h3>Topics to cover</h3>
+          <ul>
+            <li><a href='#xpath'>What is XPath?</a></li>
+            <li><a href='#typesXpath'>Types of X-path</a></li>
+            <li><a href='#xpathAxes'>XPath Axes</a></li>
+            <li><a href='#xpathWays'>Create XPath using different ways</a></li>
+            <li><a href='#byAttribute'>By usign Attribute</a></li>
+            <li><a href='#byContains'>By usign Contains()</a></li>
+            <li><a href='#byAndOr'>By usign And & OR</a></li>
+            <li><a href='#byStartsWith'>By usign Starts-with()</a></li>
+            <li><a href='#byText'>By usign Text()</a></li>
+            <li><a href='#byAxesFollowing'>By usign XPath Axes method 'following'</a></li>
+            <li><a href='#byAxesFollowingSibling'>By usign XPath Axes method 'following-sibling'</a></li>
+            <li><a href='#byAxesAncestor'>By usign XPath Axes method 'Ancestor'</a></li>
+            <li><a href='#byAxesParent'>By usign XPath Axes method 'Parent'</a></li>
+            <li><a href='#byAxesDescendant'>By usign XPath Axes method 'Descendant'</a></li>
+            <li><a href='#byAxesChild'>By usign XPath Axes method 'Child'</a></li>
+            <li><a href='#withoutChildAxes'>Access child nodes without XPath axes methods</a></li>
+            <li><a href='#withoutParentAxes'>Access parallel and parent nodes without XPath axes methods</a></li>
+          </ul>
+
+          <h3 id='xpath'>What is XPath?</h3>
+          <h4>
+            <div>
+              XPath is defined as XML path. It is a syntax or language for finding any element on 
+              the web page using XML path expression. XPath is used to find the location of any web/HTML element 
+              on a webpage using HTML DOM structure. The basic format of XPath is explained below with example.
+            </div>
+          </h4>
+          <div><i>Syntax for XPath:</i></div>
+          <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+             <p>
+            <span style="color: grey;">//</span>
+            <span style="color: red;">tagname</span>
+            <span>[</span>
+            <span style="color: green;">@</span>
+            <span style="color: blueviolet;">attribute</span>
+            <span>=</span>
+            <span>'<span style="color: #ff62c7;">value</span>']</span>
+          </p>
+          </div>
+          <ul>
+            <li><strong>//:</strong> Select current HTML node.</li>
+            <li><strong>Tagname: </strong>Tagname of the particular HTML node.</li>
+            <li><strong>@:</strong>Uses to select attribute.</li>
+            <li><strong>Attribute:</strong> Attribute name of the HTML node. (We can select any attribute of HTML node to access web Element)</li>
+            <li><strong>Value:</strong> Value of the attribute.</li>
+          </ul>
+
+
+
+
+          <h3 id='typesXpath'>Types of X-path</h3>
+            <div>There are two types of XPath:</div>
+            <br/>
+              <b>1) Absolute XPath</b>
+              <br/>
+              <b>2) Relative XPath</b>
+          <br/>
+          <h5><b>Absolute XPath:</b></h5>
+          <div>It is the direct way to find the element, but the disadvantage of the 
+          absolute XPath is that if there are any changes made in the path of the element then that XPath gets failed.
+          It starts with the single forward slash (/), which means you can select the web element from the root node.
+          Below is the example of an absolute xpath expression:
+        </div>
+          <br/>          
+          <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+              <code>
+                  &lt;html&gt;<br/>
+                   &nbsp;&nbsp;&nbsp; &lt;body&gt;<br/>
+                   &nbsp;&nbsp;&nbsp;&nbsp; &lt;div&gt;<span style="color: red">&lt;b&gt;Selenium Absolute XPath&lt;/b&gt;</span>&lt;/div&gt;<br/>
+                   &nbsp;&nbsp;&nbsp;&nbsp; &lt;div&gt;&lt;p&gt;paragraph text&lt;/p&gt;&lt;/div&gt;<br/>
+                   &nbsp;&nbsp;&nbsp; &lt;/body&gt;<br/>     
+                  &lt;/html&gt;<br/>
+              </code>
+            </div>
+          <br/>
+          <div><i>Absolute xpath for above HTML to select &lt;b&gt;&lt;/b&gt; web element:</i></div>
+          <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+            <span>&nbsp&nbsp&nbsp&nbsp</span>/html/body/div[1]/b
+          </div>
+          <br/>
+          <h5><b>Relative xpath:</b></h5>
+          <div>
+            Relative Xpath the path starts from the web element of the HTML DOM structure we select. It starts with the
+            double forward slash (//), which means it can search the element anywhere at the webpage.
+            You can start from the middle of the HTML DOM structure and no need to write long xpath.
+            Below is the example of a relative XPath expression.
+            Relative XPath uses common format used to find element.
+          </div>
+          <br/>  
+          <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+            <code>
+                &lt;html&gt;<br/>
+                &nbsp;&nbsp;&nbsp; &lt;body&gt;<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; &lt;div&gt;<span style="color: red">&lt;b <span style='color: blueviolet;'>class="<span style="color: #ff62c7;">relative-class</span>"</span>&gt;Selenium Absolute XPath&lt;/b&gt;</span>&lt;/div&gt;<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; &lt;div&gt;&lt;p&gt;paragraph text&lt;/p&gt;&lt;/div&gt;<br/>
+                &nbsp;&nbsp;&nbsp; &lt;/body&gt;<br/>     
+                &lt;/html&gt;<br/>
+            </code>  
+          </div> 
+          <br/>
+          <div><i>Relative xpath for above HTML to select &lt;b&gt;&lt;/b&gt; web element by class attribute:</i></div>
+          <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//*[@class='relative-class'] 
+          </div>
+           <br/>
+
+          <h3 id='xpathAxes'>XPath Axes</h3>
+
+          <div>XPath Axes are methods to 
+            find dynamic elements, which is not possible to access/get by normal XPath method having
+            no ID , Classname, Name, etc.
+            Axes methods are used to find those elements, which dynamically change on refresh 
+            or any other operations. There are few axes methods commonly used in Selenium 
+            Webdriver like child, parent, ancestor, sibling, preceding, self, following, following-sibling etc.</div>
+            <br/>
+            <h3 id='xpathWays'>Create XPath using different ways</h3>
+            <br/>
+            <h3 id='byAttribute'>By usign Attribute</h3>
+            <div>
+                We can create XPath expression to select HTML nodes or list of nodes on the 
+                basis of attributes like ID , Name, Classname, etc.
+            </div>
+            <br/>  
+            <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+              <code>
+                  &lt;html&gt;<br/>
+                  &nbsp;&nbsp; &lt;div&gt;<br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>class="<span style="color: #ff62c7;">class-attribute</span>"</span>&gt;Div element with Class attribute&lt;/div&gt;</span><br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>id="<span style="color: #ff62c7;">id-attribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span style='color: blueviolet;'>type="<span style="color: #ff62c7;">type-attribute</span>"</span>&gt;Input element with type attribute&lt;/input&gt;</span><br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;a <span style='color: blueviolet;'>href="<span style="color: #ff62c7;">href-attribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+                  &nbsp;&nbsp;&lt;/div&gt;<br/>
+              &lt;/html&gt;
+              </code>  
+            </div> 
+            <br/>
+            <div><i>XPath for above HTML to select web element by different attributes:</i></div>
+            <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[@class='class-attribute']<br/>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[@id='id-attribute']<br/>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='type-attribute']<br/>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//a[@href='href-attribute']<br/>
+            </div>
+       <br/>
+       <h3 id='byContains'>By usign Contains()</h3>
+       <div>
+           Contains() is a method used in XPath expression. 
+           It is used when the value of any attribute changes dynamically. 
+           The contain feature has an ability to find the element with partial text in attribute value.
+        </div>
+        <br/>
+        <div><i>Syntax for XPath using Contains:</i></div>
+        <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+           <p>
+          <span style="color: grey;">//</span>
+          <span style="color: red;">tagname</span>
+          <span>[</span>
+          <span style='color: indigo'>contains(</span>
+          <span style="color: green;">@</span>
+          <span style="color: blueviolet;">attribute</span>
+          <span>,</span>
+          <span>'<span style="color: #ff62c7;">contained value</span>')]</span>
+        </p>
+
+      </div>
+        <br/>
+        <div>
+          In the example below, we tried to identify the element by just 
+          using partial text value of the attribute.
+        </div>
+        <br/>
+        <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+          <code>
+              &lt;html&gt;<br/>
+              &nbsp;&nbsp; &lt;div&gt;<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>class="<span style="color: #ff62c7;">classAttribute</span>"</span>&gt;Div element with Class attribute&lt;/div&gt;</span><br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>id="<span style="color: #ff62c7;">idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span style='color: blueviolet;'>type="<span style="color: #ff62c7;">typeAttribute</span>"</span>&gt;Input element with type attribute&lt;/input&gt;</span><br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;a <span style='color: blueviolet;'>href="<span style="color: #ff62c7;">hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+              &nbsp;&nbsp;&lt;/div&gt;<br/>
+          &lt;/html&gt;
+          </code>  
+        </div> 
+        <br/>
+        <div><i>XPath for above HTML to select web element by different attributes with contains method:</i></div>
+        <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[contains(@class,'classAttr')]<br/>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[contains(@id,'idAttr')]<br/>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[contains(@type,'typeAttr')]<br/>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//a[contains(@href,'hrefAttr')]<br/>
+        </div>
+        <br/>
+        <div>
+           It can select the multiple elements if the attribute contain value we take is similar to multiple elements. As showing below:
+        </div>
+        <br/>
+        <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+          <code>
+              &lt;html&gt;<br/>
+              &nbsp;&nbsp; &lt;div&gt;<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>class="<span style="color: #ff62c7;">classAttribute</span>"</span>&gt;Div element with Class attribute&lt;/div&gt;</span><br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;input <span>type="<span>typeAttribute</span>"</span>&gt;Input element with type attribute&lt;/input&gt;</span><br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+              &nbsp;&nbsp;&lt;/div&gt;<br/>
+              &nbsp;&nbsp; &lt;div&gt;<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>class="<span style="color: #ff62c7;">classAttributeSecond</span>"</span>&gt;Another Div element with Class attribute&lt;/div&gt;</span><br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Another Div element with Id attribute&lt;/div&gt;</span><br/>
+              &nbsp;&nbsp;&lt;/div&gt;<br/>
+          &lt;/html&gt;
+          </code>  
+        </div> 
+        <br/>
+        <div><i>XPath for above elements:</i></div>
+        <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[contains(@class,'classAttr')]<br/>
+        </div>
+        <div>Above XPath can access both div elements.</div>
+        <br/>
+   <br/>
+
+   <h3 id='byAndOr'>By usign And & OR</h3>
+   <div>
+       We can also create XPath by using AND & OR syntax. By using this we can get a single as well as multiple HTML elements.
+    </div>
+    <br/>
+    <div><i>Syntax for XPath by using AND</i></div>
+    <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+       <p>
+      <span style="color: grey;">//</span>
+      <span style="color: red;">tagname</span>
+      <span>[</span>
+      <span style='color: indigo'></span>
+      <span style="color: green;">@</span>
+      <span style="color: blueviolet;">attribute</span>
+      <span>=</span>
+      <span>'<span style="color: #ff62c7;">value</span>'</span>
+      <span>&nbsp;and&nbsp;</span>
+      <span style="color: green;">@</span>
+      <span style="color: blueviolet;">attribute</span>
+      <span>=</span>
+      <span>'<span style="color: #ff62c7;">value</span>']</span>
+    </p>
+  </div>
+    <br/>
+    <div><i>Syntax for XPath by using OR</i></div>
+    <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+       <p>
+      <span style="color: grey;">//</span>
+      <span style="color: red;">tagname</span>
+      <span>[</span>
+      <span style='color: indigo'></span>
+      <span style="color: green;">@</span>
+      <span style="color: blueviolet;">attribute</span>
+      <span>=</span>
+      <span>'<span style="color: #ff62c7;">value</span>'</span>
+      <span>&nbsp;or&nbsp;</span>
+      <span style="color: green;">@</span>
+      <span style="color: blueviolet;">attribute</span>
+      <span>=</span>
+      <span>'<span style="color: #ff62c7;">value</span>']</span>
+    </p>
+  </div>
+    <br/>
+    <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+      <code>
+          &lt;html&gt;<br/>
+          &nbsp;&nbsp; &lt;div&gt;<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>class="<span>classAttribute</span>"</span>&gt;Div element with Class attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span  style='color: blueviolet;'>type="<span  style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+          &nbsp;&nbsp;&lt;/div&gt;<br/>
+          &nbsp;&nbsp; &lt;div&gt;<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>class="<span>classAttributeSecond</span>"</span>&gt;Another Div element with Class attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Another Div element with Id attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;&lt;/div&gt;<br/>
+      &lt;/html&gt;
+      </code>  
+    </div> 
+    <br/>
+    <div><i>XPath for above input element by using AND:</i></div>
+    <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='submit' and @name="name"]<br/>
+    </div>
+    <br/>
+    <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+      <code>
+          &lt;html&gt;<br/>
+          &nbsp;&nbsp; &lt;div&gt;<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>class="<span>classAttribute</span>"</span>&gt;Div element with Class attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span  style='color: blueviolet;'>type="<span  style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+          &nbsp;&nbsp;&lt;/div&gt;<br/>
+          &nbsp;&nbsp; &lt;div&gt;<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>class="<span>classAttributeSecond</span>"</span>&gt;Another Div element with Class attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Another Div element with Id attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span  style='color: blueviolet;'>type="<span  style="color: #ff62c7;">text</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">textName</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+          &nbsp;&nbsp;&lt;/div&gt;<br/>
+      &lt;/html&gt;
+      </code>  
+    </div> 
+    <br/>
+    <div><i>XPath for above input elements by using OR:</i></div>
+    <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='submit' or @name="textName"]<br/>
+    </div>
+    <div>XPath with OR will select both input elements</div>
+    <br/>
+    <h3 id='byStartsWith'>By usign Starts-with()</h3>
+    <div>
+      Starts-with function use to find the elements whose value is dynamic. 
+      In this expression, match the starting text of the attribute is used to find the element whose 
+      attribute changes dynamically as well as whose value is static.
+     </div>
+     <br/>
+     <div><i>Syntax for XPath using Starts-with:</i></div>
+     <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+        <p>
+       <span style="color: grey;">//</span>
+       <span style="color: red;">tagname</span>
+       <span>[</span>
+       <span style='color: indigo'>starts-with(</span>
+       <span style="color: green;">@</span>
+       <span style="color: blueviolet;">attribute</span>
+       <span>,</span>
+       <span>'<span style="color: #ff62c7;">contained value</span>')]</span>
+     </p>
+
+   </div>
+     <br/>
+     <div>
+       In the example below, we tried to identify the element by just 
+       using start-with function.
+     </div>
+     <br/>
+     <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+       <code>
+           &lt;html&gt;<br/>
+           &nbsp;&nbsp; &lt;div&gt;<br/>
+           &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>class="<span>classAttribute</span>"</span>&gt;Div element with Class attribute&lt;/div&gt;</span><br/>
+           &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>id="<span style="color: #ff62c7;">idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+           &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;input <span>type="<span>typeAttribute</span>"</span>&gt;Input element with type attribute&lt;/input&gt;</span><br/>
+           &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+           &nbsp;&nbsp;&lt;/div&gt;<br/>
+       &lt;/html&gt;
+       </code>  
+     </div> 
+     <br/>
+     <div><i>XPath for above HTML to select web element by start-with function:</i></div>
+     <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[starts-with(@id,'idAttr')]<br/>
+     </div>
+     <br/>
+     <h3 id='byText'>By usign Text()</h3>
+     <div>
+       Text function use to find the elements by using text of element (inner HTML of elements). 
+       We can use this with contains() method also. 
+       And we can find dynamic as well as static elements by using text of innerHTML.
+      </div>
+      <br/>
+      <div><i>Syntax for XPath using Text():</i></div>
+      <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+         <p>
+        <span style="color: grey;">//</span>
+        <span style="color: red;">tagname</span>
+        <span>[</span>
+        <span style="color: blueviolet;">text()</span>
+        <span>=</span>
+        <span>'<span style="color: #ff62c7;">text value</span>')]</span>
+      </p>
+ 
+    </div>
+      <br/>
+      <div>
+        In the example below, we tried to identify the element by just 
+        using Text() function.
+      </div>
+      <br/>
+      <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+        <code>
+            &lt;html&gt;<br/>
+            &nbsp;&nbsp; &lt;div&gt;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>class="<span>classAttribute</span>"</span>&gt;Div element with Class attribute&lt;/div&gt;</span><br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>id="<span style="color: #ff62c7;">idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;input <span>type="<span>typeAttribute</span>"</span>&gt;Input element with type attribute&lt;/input&gt;</span><br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+            &nbsp;&nbsp;&lt;/div&gt;<br/>
+        &lt;/html&gt;
+        </code>  
+      </div> 
+      <br/>
+      <div><i>XPath for above HTML to select web element by Text() function:</i></div>
+      <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[text()="Div element with Id attribute"]<br/>
+      </div>
+    <br/>
+      <div>We can also use Text() with contains() method to get element. As example shows below</div>
+      <br/>
+      <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[contains(text(),"Div element with Id")]<br/>
+    </div>
+    <br/>
+
+    <h3 id='byAxesFollowing'>By usign XPath Axes method 'following'</h3>
+    <div>
+     Following axes method can access all the specific nodes(e.g ::div) after the current node selected.
+     </div>
+     <br/>
+  <div><span><b>NOTE:</b>&nbsp;&nbsp;&nbsp;</span>We can also use the  XPath Axes methods with contains and starts-with methods</div>
+
+     <br/>
+     <div><i>Syntax for XPath using 'following' XPath axes method:</i></div>
+     <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+      <p>
+        <span style="color: grey;">//</span>
+        <span style="color: red;">tagname</span>
+        <span>[</span>
+        <span style="color: green;">@</span>
+        <span style="color: blueviolet;">attribute</span>
+        <span>=</span>
+        <span>'<span style="color: #ff62c7;">value</span>']</span>
+        <span style="color: blue;">//following::<span style="color: red;">tagName</span></span>
+      </p>
+   </div>
+     <br/>
+     <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+      <code>
+          &lt;html&gt;<br/>
+          &nbsp;&nbsp; &lt;div&gt;<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>class="<span>classAttribute</span>"</span>&gt;Div element with Class attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span  style='color: blueviolet;'>type="<span  style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+          &nbsp;&nbsp;&lt;/div&gt;<br/>
+          &nbsp;&nbsp; <span style="color: red">&lt;div&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>id="<span style="color: #ff62c7;">idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;<span style="color: red">&lt;/div&gt;</span><br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>id="<span style="color: #ff62c7;">idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &lt;/html&gt;
+      </code>  
+    </div> 
+    <br/>
+    <div><i>XPath for above input element by 'following' XPath axes:</i></div>
+    <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='submit']//following::div<br/>
+    </div>
+    <div>
+      Above xpath by using 'following' XPath axes will select all the 'div' HTML elements after the current node we select.
+    </div>
+    <br/>
+    <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+      <code>
+          &lt;html&gt;<br/>
+          &nbsp;&nbsp; &lt;div&gt;<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>class="<span>classAttribute</span>"</span>&gt;Div element with Class attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span  style='color: blueviolet;'>type="<span  style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+          &nbsp;&nbsp;&lt;/div&gt;<br/>
+          &nbsp;&nbsp; &lt;div&gt;<sup style='color: black'>[1]</sup><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span><span>&lt;div id="<span style="color: #ff62c7;">idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;<sup style='color: black'>[2]</sup></span><br/>
+          &nbsp;&nbsp;&lt;/div&gt;<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span style="color: red">div <span style='color: blueviolet;'>id="idAttribute"</span>&gt;Div element with Id attribute&lt;/div&gt;<sup style='color: black'>[3]</sup></span><br/>
+      &lt;/html&gt;
+      </code>  
+    </div> 
+    <br/>
+    <div><i>By using the following way we can access the particular node that we want to access.</i></div>
+    <br/>
+    <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='submit']//following::div[2]<br/>
+    </div>
+    <br/>
+    <div>As in above we can select the 2nd div node after the current node</div>
+    <br/>
+    <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+      <code>
+          &lt;html&gt;<br/>
+          &nbsp;&nbsp; &lt;div&gt;<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>class="<span>classAttribute</span>"</span>&gt;Div element with Class attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span  style='color: blueviolet;'>type="<span  style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+          &nbsp;&nbsp;&lt;/div&gt;<br/>
+          &nbsp;&nbsp; &lt;div&gt;<sup style='color: black'>[1]</sup><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>id="<span style="color: #ff62c7;">idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;<sup style='color: black'>[2]</sup></span><br/>
+          &nbsp;&nbsp;&lt;/div&gt;<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&lt;div id="idAttribute"&gt;Div element with Id attribute&lt;/div&gt;<sup style='color: black'>[3]</sup><br/>
+      &lt;/html&gt;
+      </code>  
+    </div> 
+    <br/>
+    <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+      <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='submit']//following::div[3]<br/>
+  </div>
+  <br/>
+  <div>As in above we can select the 3rd div node after the current node</div>
+  <br/>
+  <h3 id='byAxesFollowingSibling'>By usign XPath Axes method 'following-sibling'</h3>
+  <div>
+   Following-sibling axes method can access all the parallel/sibling/same level nodes of the current node.
+   </div>
+   <br/>
+   <div><i>Syntax for XPath using 'following-sibling' XPath? axes method:</i></div>
+   <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+    <p>
+      <span style="color: grey;">//</span>
+      <span style="color: red;">tagname</span>
+      <span>[</span>
+      <span style="color: green;">@</span>
+      <span style="color: blueviolet;">attribute</span>
+      <span>=</span>
+      <span>'<span style="color: #ff62c7;">value</span>']</span>
+      <span style="color: blue;">//following-sibling::<span style="color: red;">tagName</span></span>
+   </p>
+ </div>
+   <br/>
+   <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+    <code>
+        &lt;html&gt;<br/>
+        &nbsp;&nbsp; &lt;div&gt;<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>class="<span style="color: #ff62c7;">classAttribute</span>"</span>&gt;Div element with Class attribute&lt;/div&gt;<sup style='color: black'>[1]</sup></span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>id="<span style="color: #ff62c7;">idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;<sup style='color: black'>[2]</sup></span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span  style='color: blueviolet;'>type="<span  style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+        &nbsp;&nbsp;&lt;/div&gt;<br/>
+        &nbsp;&nbsp; <span>&lt;div&gt;</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+        &nbsp;&nbsp;<span>&lt;/div&gt;</span><br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+    &lt;/html&gt;
+    </code>  
+  </div> 
+  <br/>
+  <div><i>XPath for above input element by 'following-sibling' XPath axes:</i></div>
+  <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+      <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='submit']//following-sibling::div<br/>
+  </div>
+  <br/>
+  <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='submit']//following-sibling::div[2]<br/>
+</div>
+<br/>
+<div>As in by using above XPath we can select the 2nd div node (and other type of nodes) after the current node.</div>
+<div>Similarly we can access other nodes.</div>
+<br/>
+<h3 id='byAxesAncestor'>By usign XPath Axes method 'Ancestor'</h3>
+<div>
+  'Ancestor' axes method can access all the parent/grand parent nodes of the current node.
+ </div>
+ <br/>
+ <div><i>Syntax for XPath using 'Ancestor' XPath axes method:</i></div>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+  <p>
+    <span style="color: grey;">//</span>
+    <span style="color: red;">tagname</span>
+    <span>[</span>
+    <span style="color: green;">@</span>
+    <span style="color: blueviolet;">attribute</span>
+    <span>=</span>
+    <span>'<span style="color: #ff62c7;">value</span>']</span>
+    <span style="color: blue;">//ancestor::<span style="color: red;">tagName</span></span>
+ </p>
+</div>
+ <br/>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+  <code>
+      &lt;html&gt;<br/> 
+      &nbsp;&nbsp; <span style="color: red">&lt;div&gt;<sup style='color: black'>[2]</sup></span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div&gt;<sup style='color: black'>[1]</sup></span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span  style='color: blueviolet;'>type="<span  style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: red">&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp; <span style="color: red">&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &lt;/html&gt;
+  </code>  
+</div> 
+<br/>
+<div><i>XPath for above input element by 'Ancestor' XPath axes:</i></div>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='submit']//ancestor::div<br/>
+</div>
+<div>
+  Above xpath by using 'ancestor' XPath axes will select all the parent/grand parent 'div' HTML elements from current node we select.
+</div>
+<br/>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='submit']//ancestor::div[1]<br/>
+</div>
+<br/>
+<div>As in by using above XPath we can select the 1st div parent node from the current node.</div>
+<br/>
+<h3 id='byAxesParent'>By usign XPath Axes method 'Parent'</h3>
+<div>
+  'Parent' axes method can access single level parent node of the current node.
+ </div>
+ <br/>
+ <div><i>Syntax for XPath using 'Parent' XPath axes method:</i></div>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+  <p>
+    <span style="color: grey;">//</span>
+    <span style="color: red;">tagname</span>
+    <span>[</span>
+    <span style="color: green;">@</span>
+    <span style="color: blueviolet;">attribute</span>
+    <span>=</span>
+    <span>'<span style="color: #ff62c7;">value</span>']</span>
+    <span style="color: blue;">//parent::<span style="color: red;">tagName</span></span>
+ </p>
+</div>
+ <br/>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+  <code>
+      &lt;html&gt;<br/> 
+      &nbsp;&nbsp; <span>&lt;div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span  style='color: blueviolet;'>id="<span style="color: #ff62c7;">parentIdAttribute</span>"</span>&gt;<sup style='color: black'>[1]</sup></span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span style='color: blueviolet;'>type="<span style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: red">&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp; <span>&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &lt;/html&gt;
+  </code>  
+</div> 
+<br/>
+<div><i>XPath for above input element by 'Parent' XPath axes:</i></div>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='submit']//parent::div<br/>
+</div>
+<div>
+  Above xpath by using 'parent' XPath axes will select the parent 'div'<b style='color: black;'>( with parentIdAttribute css id property )</b> HTML element from current node.
+</div>
+<br/>
+<h3 id='byAxesDescendant'>By usign XPath Axes method 'Descendant'</h3>
+<div>
+  'Descendant' axes method can access descendant (child/nested child) nodes of current node.
+ </div>
+ <br/>
+ <div><i>Syntax for XPath using 'Descendant' XPath axes method:</i></div>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+  <p>
+    <span style="color: grey;">//</span>
+    <span style="color: red;">tagname</span>
+    <span>[</span>
+    <span style="color: green;">@</span>
+    <span style="color: blueviolet;">attribute</span>
+    <span>=</span>
+    <span>'<span style="color: #ff62c7;">value</span>']</span>
+    <span style="color: blue;">//descendant::<span style="color: red;">tagName</span></span>
+ </p>
+</div>
+ <br/>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+  <code>
+      &lt;html&gt;<br/> 
+      &nbsp;&nbsp; <span style="color: red">&lt;div <span style='color: blueviolet;'>class="<span style="color: #ff62c7;">descendant-class</span>"</span>&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style="color: blueviolet;">id="<span style="color: #ff62c7;">idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;<sup style='color: black'>[1]</sup></span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style="color: blueviolet;">id="<span style="color: #ff62c7;">parentIdAttribute</span>"</span>&gt;<sup style='color: black'>[2]</sup></span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style="color: blueviolet;">id="<span style="color: #ff62c7;">idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;<sup style='color: black'>[3]</sup></span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style="color: blueviolet;">id="<span style="color: #ff62c7;">idAttribute2</span>"</span>&gt;Div element with Id attribute2&lt;/div&gt;<sup style='color: black'>[4]</sup></span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;input <span style='color: blueviolet;'>type="<span style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp; <span style="color: red">&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp; <span style="color: red">&lt;/div&gt;</span><br/>
+      &lt;/html&gt;
+  </code>  
+</div> 
+<br/>
+<div><i>XPath for above div element by 'Descendant' XPath axes:</i></div>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[@class='descendant-class']//descendant::div<br/>
+</div>
+<div>
+  Above xpath by using 'Descendant' XPath axes can select the all child/nested child div HTML element from current node.
+</div>
+<br/>
+<div><i>We can also access the desired child nodes by the following ways</i></div>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[@class='descendant-class']//descendant::div[1]<br/>
+</div>
+<br/>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[@class='descendant-class']//descendant::div[2]<br/>
+</div>
+<br/>
+<h3 id='byAxesChild'>By usign XPath Axes method 'Child'</h3>
+<div>
+  'Child' axes method can access child nodes of current node.
+ </div>
+ <br/>
+ <div><i>Syntax for XPath using 'Child' XPath axes method:</i></div>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+  <p>
+    <span style="color: grey;">//</span>
+    <span style="color: red;">tagname</span>
+    <span>[</span>
+    <span style="color: green;">@</span>
+    <span style="color: blueviolet;">attribute</span>
+    <span>=</span>
+    <span>'<span style="color: #ff62c7;">value</span>']</span>
+    <span style="color: blue;">/child::<span style="color: red;">tagName</span></span>
+ </p>
+</div>
+ <br/>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+  <code>
+      &lt;html&gt;<br/> 
+      &nbsp;&nbsp; <span>&lt;div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span  style='color: blueviolet;'>id="<span style="color: #ff62c7;">parentIdAttribute</span>"</span>&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span style='color: blueviolet;'>type="<span style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: red">&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp; <span>&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &lt;/html&gt;
+  </code>  
+</div> 
+<br/>
+<div><i>XPath for above div element by 'Child' XPath axes:</i></div>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[@id='parentIdAttribute']/child::input<br/>
+</div>
+<div>
+  Above xpath by using 'child' XPath axes will select the 'input' child node <b style='color: black;'>( Can access any child node )</b> from current node.
+</div>
+<br/>
+<h3 id='withoutChildAxes'>Access Child/Nested Child nodes without XPath axes methods</h3>
+<div>
+ By following way we can access child/nested child nodes of current node.
+ </div>
+ <br/>
+ <div><i>Syntax for XPath without using 'Child' XPath axes method:</i></div>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+  <p>
+    <span style="color: grey;">//</span>
+    <span style="color: red;">tagname</span>
+    <span>[</span>
+    <span style="color: green;">@</span>
+    <span style="color: blueviolet;">attribute</span>
+    <span>=</span>
+    <span>'<span style="color: #ff62c7;">value</span>']</span>
+    <span style="color: blue;">/<span style="color: red;">tagName</span></span>
+ </p>
+</div>
+ <br/>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+  <code>
+      &lt;html&gt;<br/> 
+      &nbsp;&nbsp;<span style="color: red">&lt;div <span  style='color: blueviolet;'>id="<span style="color: #ff62c7;">topParentId</span>"</span>&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span  style='color: blueviolet;'>id="<span style="color: #ff62c7;">parentIdAttribute</span>"</span>&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span style='color: blueviolet;'>type="<span style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: red">&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp; <span>&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &lt;/html&gt;
+  </code>  
+</div> 
+<br/>
+<div><i>XPath to access input node with top div element without using 'Child' XPath axes:</i></div>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[@id='parentIdAttribute']/input<br/>
+</div>
+<br/>
+ <div>Access Child Node</div>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+  <code>
+      &lt;html&gt;<br/> 
+      &nbsp;&nbsp;<span style="color: red">&lt;div <span  style='color: blueviolet;'>id="<span style="color: #ff62c7;">topParentId</span>"</span>&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;a <span style='color: blueviolet;'>href="<span style="color: #ff62c7;">hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;<sup style='color: black'>[1]</sup></span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>parentIdAttribute</span>"</span>&gt;<sup style='color: black'>[2]</sup></span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute2</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;input <span>type="<span>submit</span>"</span>  <span>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp; <span>&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp; <span style="color: red">&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;<sup style='color: black'>[3]</sup></span><br/>
+      &lt;/html&gt;
+  </code>  
+</div> 
+<br/>
+<div><i>XPath to access child anchor node without using 'Child' XPath axes:</i></div>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[@id='topParentId']/a<br/>
+</div>
+<br/>
+<div><i>XPath to access child div node without using 'Child' XPath axes:</i></div>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[@id='topParentId']/div<br/>
+    or<br/>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[@id='topParentId']/div[1]<br/>
+</div>
+<br/>
+<div><i>XPath to access child div[2] node without using 'Child' XPath axes:</i></div>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[@id='topParentId']/div[2]<br/>
+</div>
+<br/>
+ <div>Access Nested Child Node</div>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+  <code>
+      &lt;html&gt;<br/> 
+      &nbsp;&nbsp;<span style="color: red">&lt;div <span  style='color: blueviolet;'>id="<span style="color: #ff62c7;">topParentId</span>"</span>&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;<sup style='color: black'>[1]</sup></span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span  style='color: blueviolet;'>id="<span style="color: #ff62c7;">parentIdAttribute</span>"</span>&gt;<sup style='color: black'>[2]</sup></span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute2</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span style='color: blueviolet;'>type="<span style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: red">&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp; <span style="color: red">&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;<sup style='color: black'>[3]</sup></span><br/>
+      &lt;/html&gt;
+  </code>  
+</div> 
+<br/>
+<div><i>XPath to access nested child input node without using 'Child' XPath axes:</i></div>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//div[@id='topParentId']/div[2]/input<br/>
+</div>
+<br/>
+<h3 id='withoutParentAxes'>Access parallel and parent nodes without XPath axes methods</h3>
+<div>
+ By following way we can access parent or parallel nodes of current node.
+ </div>
+ <br/>
+ <div><i>Syntax for access parent node of current node without using XPath axes method:</i></div>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+  <p>
+    <span style="color: grey;">//</span>
+    <span style="color: red;">tagname</span>
+    <span>[</span>
+    <span style="color: green;">@</span>
+    <span style="color: blueviolet;">attribute</span>
+    <span>=</span>
+    <span>'<span style="color: #ff62c7;">value</span>']</span>
+    <span style="color: blue;">/..<span style="color: red;"></span></span>
+ </p>
+</div>
+<br/>
+ <div><i>Syntax for access parallel nodes of current node  without using XPath axes method:</i></div>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 5px;'>
+  <p>
+    <span style="color: grey;">//</span>
+    <span style="color: red;">tagname</span>
+    <span>[</span>
+    <span style="color: green;">@</span>
+    <span style="color: blueviolet;">attribute</span>
+    <span>=</span>
+    <span>'<span style="color: #ff62c7;">value</span>']</span>
+    <span style="color: blue;">/../<span style="color: red;">tagName</span></span>
+ </p>
+</div>
+ <br/>
+ <div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+  <code>
+      &lt;html&gt;<br/> 
+      &nbsp;&nbsp;<span style="color: red">&lt;div <span  style='color: blueviolet;'>id="<span style="color: #ff62c7;">topParentId</span>"</span>&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span  style='color: blueviolet;'>id="<span style="color: #ff62c7;">parentIdAttribute</span>"</span>&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute2</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span style='color: blueviolet;'>type="<span style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: red">&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp; <span>&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &lt;/html&gt;
+  </code>  
+</div> 
+<br/>
+<div><i>XPath to access parent div node with input element without using 'Child' XPath axes:</i></div>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='submit']/..<br/>
+</div>
+<br/>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+  <code>
+      &lt;html&gt;<br/> 
+      &nbsp;&nbsp;<span>&lt;div <span>id="<span>topParentId</span>"</span>&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span >&lt;div <span >id="<span>parentIdAttribute</span>"</span>&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>id="<span style="color: #ff62c7;">idAttribute2</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span style='color: blueviolet;'>type="<span style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp; <span>&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp; <span>&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &lt;/html&gt;
+  </code>  
+</div> 
+<br/>
+<div><i>XPath to access parallel div node with id attribute2 by using input element as current node without using 'Child' XPath axes:</i></div>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='submit']/../div<br/>
+    <span>or</span><br/>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='submit']/../div[@id='idAttribute2']<br/>
+</div>
+<br/>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>     
+  <code>
+      &lt;html&gt;<br/> 
+      &nbsp;&nbsp;<span style="color: red">&lt;div <span style='color: blueviolet;'>id="<span style="color: #ff62c7;">topParentId</span>"</span>&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span >&lt;div <span >id="<span>parentIdAttribute</span>"</span>&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute2</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">&lt;input <span style='color: blueviolet;'>type="<span style="color: #ff62c7;">submit</span>"</span>  <span  style='color: blueviolet;'>name="<span  style="color: #ff62c7;">name</span>"</span>&gt;Input element with type and name attribute&lt;/input&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;a <span>href="<span>hrefAttribute</span>"</span>&gt;Anchor element with href attribute&lt;/a&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp; <span>&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp; <span style="color: red">&lt;/div&gt;</span><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span>&lt;div <span>id="<span>idAttribute</span>"</span>&gt;Div element with Id attribute&lt;/div&gt;</span><br/>
+      &lt;/html&gt;
+  </code>  
+</div> 
+<br/>
+<div><i>XPath to access top parent div node with id 'topParentId' by using input element as current node without using 'Child' XPath axes:</i></div>
+<div style='background-color: #cccccc;border-radius:10px; padding: 15px;'>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>//input[@type='submit']/../..<br/>
+</div>
+ <br/>
+</section>
+    </div>
+
+    <nav>
+      <h2><a href="index.html">Home</a></h2>
+      <h3>Namespaces</h3>
+      <ul>
+        <li><a href="createXpath.html">How to create XPath?</a></li>
+        <li><a href="clickElement.html">clickElement</a></li>
+        <li><a href="closeBrowser.html">closeBrowser</a></li>
+        <li><a href="closeCurrentWindow.html">closeCurrentWindow</a></li>
+        <li><a href="findElement.html">findElement</a></li>
+        <li><a href="findElementByClass.html">findElementByClass</a></li>
+        <li><a href="findElementById.html">findElementById</a></li>
+        <li><a href="findElementByName.html">findElementByName</a></li>
+        <li><a href="findElementByTagName.html">findElementByTagName</a></li>
+        <li><a href="findElementByXpath.html">findElementByXpath</a></li>
+        <li><a href="findElements.html">findElements</a></li>
+        <li><a href="findElementsByClass.html">findElementsByClass</a></li>
+        <li><a href="findElementsById.html">findElementsById</a></li>
+        <li><a href="findElementsByName.html">findElementsByName</a></li>
+        <li><a href="findElementsByTagName.html">findElementsByTagName</a></li>
+        <li><a href="findElementsByXpath.html">findElementsByXpath</a></li>
+        <li><a href="getAttribute.html">getAttribute</a></li>
+        <li><a href="getCssValue.html">getCssValue</a></li>
+        <li><a href="getCurrentUrl.html">getCurrentUrl</a></li>
+        <li><a href="getElementText.html">getElementText</a></li>
+        <li><a href="getTitle.html">getTitle</a></li>
+        <li><a href="isDisplayed.html">isDisplayed</a></li>
+        <li><a href="isSelected.html">isSelected</a></li>
+        <li><a href="navigateBack.html">navigateBack</a></li>
+        <li><a href="navigateForward.html">navigateForward</a></li>
+        <li><a href="navigateTo.html">navigateTo</a></li>
+        <li><a href="refreshPage.html">refreshPage</a></li>
+        <li><a href="scrollBy.html">scrollBy</a></li>
+        <li><a href="scrollTo.html">scrollTo</a></li>
+        <li>
+          <a href="switchToDefaultContent.html">switchToDefaultContent</a>
+        </li>
+        <li><a href="switchToFrame.html">switchToFrame</a></li>
+        <li><a href="takeScreenshot.html">takeScreenshot</a></li>
+        <li><a href="untilElementLocated.html">untilElementLocated</a></li>
+        <li>
+          <a href="untilElementLocatedByClass.html"
+            >untilElementLocatedByClass</a
+          >
+        </li>
+        <li>
+          <a href="untilElementLocatedById.html">untilElementLocatedById</a>
+        </li>
+        <li>
+          <a href="untilElementLocatedByName.html">untilElementLocatedByName</a>
+        </li>
+        <li>
+          <a href="untilElementLocatedByTagName.html"
+            >untilElementLocatedByTagName</a
+          >
+        </li>
+        <li>
+          <a href="untilElementLocatedByXpath.html"
+            >untilElementLocatedByXpath</a
+          >
+        </li>
+        <li><a href="untilElementsLocated.html">untilElementsLocated</a></li>
+        <li>
+          <a href="untilElementsLocatedByClass.html"
+            >untilElementsLocatedByClass</a
+          >
+        </li>
+        <li>
+          <a href="untilElementsLocatedById.html">untilElementsLocatedById</a>
+        </li>
+        <li>
+          <a href="untilElementsLocatedByName.html"
+            >untilElementsLocatedByName</a
+          >
+        </li>
+        <li>
+          <a href="untilElementsLocatedByTagName.html"
+            >untilElementsLocatedByTagName</a
+          >
+        </li>
+        <li>
+          <a href="untilElementsLocatedByXpath.html"
+            >untilElementsLocatedByXpath</a
+          >
+        </li>
+        <li><a href="untilUrlContains.html">untilUrlContains</a></li>
+        <li><a href="untilUrlIs.html">untilUrlIs</a></li>
+        <li><a href="untilUrlMatches.html">untilUrlMatches</a></li>
+      </ul>
+    </nav>
+
+    <br class="clear" />
+
+    <footer>
+      Documentation generated by
+      <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Nov 28
+      2019 01:14:16 GMT+0530 (India Standard Time)
+    </footer>
+
+    <script>
+      prettyPrint();
+    </script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
+</html>
