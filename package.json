@@ -15,6 +15,8 @@
   "author": "parteek",
   "license": "ISC",
   "dependencies": {
+    "@babel/preset-env": "^7.7.7",
+    "babel-preset-es2015": "^6.24.1",
     "jsdoc": "^3.6.3",
     "lodash": "^4.17.15",
     "selenium-webdriver": "^4.0.0-alpha.4"
