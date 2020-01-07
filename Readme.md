@@ -16,19 +16,14 @@ browsers are all standalone executables that should be placed on your system
 
 [PATH].
 
-| Browser | Component |
-
+| Browser           | Component                          |
 | ----------------- | ---------------------------------- |
+| Chrome            | [chromedriver(.exe)][chrome]       |
+| Internet Explorer | [IEDriverServer.exe][release]      |
+| Edge              | [MicrosoftWebDriver.msi][edge]     |
+| Firefox           | [geckodriver(.exe)][geckodriver]   |
+| Safari            | [safaridriver]                     |
 
-| Chrome | [chromedriver(.exe)][chrome] |
-
-| Firefox | [geckodriver(.exe)][geckodriver] |
-
-| Edge | [MicrosoftWebDriver.msi][edge] |
-
-| Internet Explorer | [IEDriverServer.exe][release] |
-
-| Safari | [safaridriver] |
 
 ## Usage
 
