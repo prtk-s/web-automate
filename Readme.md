@@ -1,47 +1,86 @@
-
 # web-automate
 
 web-automate is a browser automation library. Used for testing
+
 web applications with selenium. web-automate provides you to use some selenium functionality in a easy way. By using web-automate you can do fast and clean code at some level.
 
 ## Installation
 
 web-automate may be installed via npm with
 
-    npm install web-automate
+npm install web-automate
 
 To use web-automate you don't need to download additional resources. You will only need the selenium-webdriver and drivers for Chrome, Firefox, and Microsoft's IE and Edge web
+
 browsers are all standalone executables that should be placed on your system
+
 [PATH].
 
+| Browser | Component |
 
-| Browser           | Component                          |
 | ----------------- | ---------------------------------- |
-| Chrome            | [chromedriver(.exe)][chrome]       |
-| Firefox           | [geckodriver(.exe)][geckodriver]   |
-| Edge              | [MicrosoftWebDriver.msi][edge]     |
-| Internet Explorer | [IEDriverServer.exe][release]      |
-| Safari            | [safaridriver]                     |
+
+| Chrome | [chromedriver(.exe)][chrome] |
+
+| Firefox | [geckodriver(.exe)][geckodriver] |
+
+| Edge | [MicrosoftWebDriver.msi][edge] |
+
+| Internet Explorer | [IEDriverServer.exe][release] |
+
+| Safari | [safaridriver] |
 
 ## Usage
 
 The sample below and others are included in the `example` directory. You may
+
 also find the web-driver informative by using selenium-webdriver.
 
 ```javascript
-const { Builder } = require('selenium-webdriver');
-const { findElement, closeBrowser, navigateTo } = require('web-automate');
+const { Builder } = require("selenium-webdriver");
+
+const { findElement, closeBrowser, navigateTo } = require("web-automate");
+
 (async function example() {
-  let driver = await new Builder().forBrowser('chromes').build();
+  let driver = await new Builder().forBrowser("chromes").build();
+
   try {
-    await navigateTo(driver, 'http://www.google.com/ncr');
-    const webElement = await findElement(driver, { name: 'q'});
-    webElement.sendKeys('Hello World');
+    await navigateTo(driver, "http://www.google.com/ncr");
+
+    const webElement = await findElement(driver, { name: "q" });
+
+    webElement.sendKeys("Hello World");
   } finally {
     await closeBrowser(driver);
   }
 })();
 ```
+
+### Use with binder Api
+
+By using the `binder` api in web-automate you do not have to use `driver` again and again. Pass the `driver` as argument to `binder` api once and use all the web-automate api. You can also use the other api's without `binder` api by above way.
+See the [documentation][api] to use the `binder` api.
+
+```javascript
+const { Builder } = require("selenium-webdriver");
+
+const { binder } = require("web-automate");
+const { findElement, closeBrowser, navigateTo } = binder(driver);
+(async function example() {
+  let driver = await new Builder().forBrowser("chromes").build();
+
+  try {
+    await navigateTo("http://www.google.com/ncr");
+
+    const webElement = await findElement({ name: "q" });
+
+    webElement.sendKeys("Hello World");
+  } finally {
+    await closeBrowser();
+  }
+})();
+```
+
 ## Documentation
 
 API documentation is available online from the [web-automate project][api].
@@ -53,16 +92,22 @@ web-automate supports same versions of the node as selenium-webdriver.
 ## Issues
 
 Please report any issues using the [web-automate issue tracker][issues]. When using
+
 the issue tracker
 
 - Include complete details about the issue.
+
 - You can include a link to a [gist](http://gist.github.com/) with any stack traces/logs (and you can also attach these directly to the bug
-    report).
+
+report).
+
 - Your bug report will be closed if you do not provide enough
-    information abut the issue.
+
+information abut the issue.
+
 - Please only open new issue and reference the original issue in your report.
 
-[PATH]: http://en.wikipedia.org/wiki/PATH_%28variable%29
+[path]: http://en.wikipedia.org/wiki/PATH_%28variable%29
 [api]: https://prtk-s.github.io/web-automate/
 [chrome]: http://chromedriver.storage.googleapis.com/index.html
 [issues]: https://github.com/prtk-s/web-automate/issues
