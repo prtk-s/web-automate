@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>web-automate: scrollBy</title>
+    <title>web-automate: Binder</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -20,110 +20,129 @@
 
   <body>
     <div id="main">
-      <h1 class="page-title">Namespace: scrollBy</h1>
+      <h1 class="page-title">Namespace: Binder</h1>
 
       <section>
         <header>
-          <h2>scrollBy</h2>
+          <h2>binder</h2>
         </header>
+        <h4 class="name" id="clickElement">
+          <span class="type-signature"></span>binder<span class="signature"
+            >(driver)</span
+          ><span class="type-signature"> &rarr; {Object|Error}</span>
+        </h4>
 
+        <div class="description">
+          <p>binder</p>
+          <div>
+            In binder api when we paas driver, it will return all web-driver
+            api's which you can use without passing &quot;driver&quot;
+            parameter. You just have to pass the other arguments (as e.g. xpath,
+            class, id, tagname, etc.).
+          </div>
+        </div>
+
+        <h5>Parameters:</h5>
+
+        <table class="params">
+          <thead>
+            <tr>
+              <th>Name</th>
+
+              <th>Type</th>
+
+              <th>Attributes</th>
+
+              <th class="last">Description</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td class="name"><code>driver</code></td>
+
+              <td class="type">
+                <span class="param-type">Object</span>
+              </td>
+
+              <td class="attributes"></td>
+
+              <td class="description last">
+                <p>webdriver object of web browser.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <dl class="details"></dl>
+
+        <h5>Returns:</h5>
+
+        <div class="param-desc">
+          <p>
+            return a object of web-automate &quot;Api&quot;.
+          </p>
+        </div>
+
+        <dl>
+          <dt>
+            Type
+          </dt>
+          <dd>
+            <span class="param-type">Object</span>
+            |
+
+            <span class="param-type">Error</span>
+          </dd>
+        </dl>
         <article>
           <div class="container-overview">
-            <h4 class="name" id="scrollBy">
-              <span class="type-signature"></span>scrollBy<span
-                class="signature"
-                >(driver, xPixels, yPixels)</span
-              ><span class="type-signature"></span>
-            </h4>
-
-            <div class="description">
-              <p>scrollBy</p>
-            </div>
-
-            <h5>Parameters:</h5>
-
-            <table class="params">
-              <thead>
-                <tr>
-                  <th>Name</th>
-
-                  <th>Type</th>
-
-                  <th class="last">Description</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td class="name"><code>driver</code></td>
-
-                  <td class="type">
-                    <span class="param-type">Object</span>
-                  </td>
-
-                  <td class="description last">
-                    <p>webdriver object of web browser.</p>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="name"><code>xPixels</code></td>
-
-                  <td class="type">
-                    <span class="param-type">Number</span>
-                  </td>
-
-                  <td class="description last">
-                    <p>
-                      to how much you want to scroll down/up from current
-                      position.
-                    </p>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="name"><code>yPixels</code></td>
-
-                  <td class="type">
-                    <span class="param-type">Number</span>
-                  </td>
-
-                  <td class="description last">
-                    <p>
-                      to how much you want to scroll leftr/right from current
-                      position.
-                    </p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
             <dl class="details"></dl>
 
-            <h3>Example</h3>
+            <h3>Examples</h3>
 
-            <p class="code-caption">Examples usage of scrollBy</p>
+            <p class="code-caption">
+              Examples usage of binder with &quot;untilElementLocated&quot; api.
+            </p>
 
-            <pre
-              class="prettyprint"
-            ><code> scrollBy(driver, xPixels, yPixels).then(() => {
-  // It will scroll down/up to the pixels user give from the current position.
-  // It will scroll left/right to the pixels user give from the current position.
-  // To scroll up/right you have to give pixels in negative.
+            <pre class="prettyprint">
+<code> const { untilElementLocated } = binder(driver); 
+  untilElementLocated({ xpath: '//*[@id="testXpath"]/div' }).then((webElement) => {
+   // After resolve promise We'll get the "webElement" object for HTML element whose "xpath" we pass.
+   // By the help of "webElement" we click on HTML element.
  }).catch((error) => {
    // handle error
  });</code></pre>
+
+            <p class="code-caption">
+              Examples usage of binder with &quot;findElement&quot; api.
+            </p>
+
+            <pre class="prettyprint">
+<code> const { findElement } = binder(driver); 
+  findElement({ xpath: '//*[@id="testXpath"]/div' }).then((webElement) => {
+// After resolve promise We'll get the "webElement" object for HTML element whose "xpath" we pass.
+// By the help of "webElement" we click on HTML element.
+}).catch((error) => {
+// handle error
+});</code></pre>
           </div>
         </article>
+        <div>
+          <span><b>Note: </b></span>Similarly, you can use other api's of
+          web-automate just pass driver once. Everything will work same as
+          before only you don't need to use the "driver" as parameter again and
+          again.
+        </div>
       </section>
     </div>
 
     <nav>
       <h2><a href="index.html">Home</a></h2>
-      
+
       <ul>
         <li><a href="createXpath.html">How to create XPath?</a></li>
-<li><a href="binder.html">binder</a></li>
+        <li><a href="binder.html">binder</a></li>
         <li><a href="clickElement.html">clickElement</a></li>
         <li><a href="closeBrowser.html">closeBrowser</a></li>
         <li><a href="closeCurrentWindow.html">closeCurrentWindow</a></li>
