@@ -1,6 +1,6 @@
 {
   "name": "web-automate",
-  "version": "1.1.3",
+  "version": "1.1.5",
   "description": "Automation library for selenium",
   "main": "index.js",
   "scripts": {
